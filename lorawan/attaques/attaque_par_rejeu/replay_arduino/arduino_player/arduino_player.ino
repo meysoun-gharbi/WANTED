@@ -8,11 +8,10 @@
 //  0xDD, 0x7C                                        // DevNonce
 //};
 
-// paquet data up 40 9F 95 92 00 00 04 00 02 E2 88 E4 98 1C A3 8E DE 71 45 E1 27 F3 EC B0 C2 08 DA
+// paquet data up 40 31 CC 9E 01 00 14 02 02 78 B7 11 B3 A6 55 E6 4B 
 uint8_t packet[] = {
-  0x40, 0x9F, 0x95, 0x92, 0x00, 0x00, 0x04, 0x00, 0x02,
-  0xE2, 0x88, 0xE4, 0x98, 0x1C, 0xA3, 0x8E, 0xDE, 0x71,
-  0x45, 0xE1, 0x27, 0xF3, 0xEC, 0xB0, 0xC2, 0x08, 0xDA
+  0x40, 0x31, 0xCC, 0x9E, 0x01, 0x00, 0x14, 0x02, 0x02,
+  0x78, 0xB7, 0x11, 0xB3, 0xA6, 0x55, 0xE6, 0x4B
 };
 
 int packetSize = sizeof(packet);
@@ -37,13 +36,21 @@ void setup() {
 }
 
 void loop() {
-  Serial.println("Envoi du paquet...");
-
-  // Incrémenter le compteur de trames (FCnt)
-  packet[6]++;  // Incrémente l'octet de poids faible
-  if (packet[6] == 0) {
-    packet[7]++;  // Incrémente l'octet de poids fort si nécessaire
+  //Serial.println("Envoi du paquet...");
+  Serial.print("Rejeu de la trame : ");
+  
+  // Affichage hexadécimal pour votre console série
+  for (int i = 0; i < packetSize; i++) {
+    if (packet[i] < 0x10) Serial.print("0");
+    Serial.print(packet[i], HEX);
+    Serial.print(" ");
   }
+  Serial.println();
+  // Incrémenter le compteur de trames (FCnt)
+  //packet[6]++;  // Incrémente l'octet de poids faible
+  //if (packet[6] == 0) {
+    //packet[7]++;  // Incrémente l'octet de poids fort si nécessaire
+  //}
 
   // Envoyer le paquet
   LoRa.beginPacket();

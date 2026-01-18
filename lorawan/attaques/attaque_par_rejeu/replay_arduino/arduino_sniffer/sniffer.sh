@@ -1,5 +1,5 @@
 #!/bin/bash
-
+cd "$(dirname "$0")"
 # Définir les valeurs par défaut
 PORT="/dev/ttyACM0"  # Port série par défaut dans notre cas
 BAUDRATE="9600"  # Débit par défaut

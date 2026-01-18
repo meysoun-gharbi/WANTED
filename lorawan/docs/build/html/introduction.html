@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="fr" data-content_root="./">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Introduction &#8212; Documentation Reproduction d&#39;attaques sur LoRaWAN 1.0</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
-    <script src="_static/documentation_options.js?v=7a28dfa3"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/translations.js?v=bf059b8c"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=6625fa76" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=bd10cbeb"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/translations.js?v=d99ca74e"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Attaques" href="attaques.html" />
@@ -19,9 +19,8 @@
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-
   
-  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
   
@@ -34,9 +33,9 @@
           <div class="body" role="main">
             
   <section id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Lien vers cette rubrique">¶</a></h1>
+<h1>Introduction<a class="headerlink" href="#introduction" title="Lien permanent vers cette rubrique">¶</a></h1>
 <section id="objectif-du-projet">
-<h2>Objectif du projet<a class="headerlink" href="#objectif-du-projet" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Objectif du projet<a class="headerlink" href="#objectif-du-projet" title="Lien permanent vers cette rubrique">¶</a></h2>
 <p>Ce projet a pour but d’expérimenter différentes attaques sur un réseau LoRaWAN, notamment :</p>
 <ul class="simple">
 <li><p><strong>Sniffing</strong> : interception des paquets LoRaWAN transmis sur le réseau.</p></li>
@@ -48,9 +47,9 @@
 </section>
 </section>
 <section id="infrastructure-lorawan">
-<h1>Infrastructure LoRaWAN<a class="headerlink" href="#infrastructure-lorawan" title="Lien vers cette rubrique">¶</a></h1>
+<h1>Infrastructure LoRaWAN<a class="headerlink" href="#infrastructure-lorawan" title="Lien permanent vers cette rubrique">¶</a></h1>
 <section id="materiel-utilise">
-<h2>Matériel utilisé<a class="headerlink" href="#materiel-utilise" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Matériel utilisé<a class="headerlink" href="#materiel-utilise" title="Lien permanent vers cette rubrique">¶</a></h2>
 <ul class="simple">
 <li><p><strong>Passerelle LoRaWAN</strong> fournie par l’encadrant, incluant :</p>
 <ul>
@@ -62,9 +61,9 @@
 </ul>
 </section>
 <section id="logiciel-utilise">
-<h2>Logiciel utilisé<a class="headerlink" href="#logiciel-utilise" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Logiciel utilisé<a class="headerlink" href="#logiciel-utilise" title="Lien permanent vers cette rubrique">¶</a></h2>
 <section id="chirpstack">
-<h3>ChirpStack<a class="headerlink" href="#chirpstack" title="Lien vers cette rubrique">¶</a></h3>
+<h3>ChirpStack<a class="headerlink" href="#chirpstack" title="Lien permanent vers cette rubrique">¶</a></h3>
 <p>ChirpStack est utilisé comme serveur réseau LoRaWAN. Pour accéder à son interface web et configurer l’application :</p>
 <ol class="arabic simple">
 <li><p>Se connecter au réseau WiFi de la passerelle.</p></li>
@@ -74,17 +73,17 @@
 </section>
 </section>
 <section id="noeud-legitime">
-<h1>Noeud légitime<a class="headerlink" href="#noeud-legitime" title="Lien vers cette rubrique">¶</a></h1>
+<h1>Noeud légitime<a class="headerlink" href="#noeud-legitime" title="Lien permanent vers cette rubrique">¶</a></h1>
 <section id="id1">
-<h2>Matériel utilisé<a class="headerlink" href="#id1" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Matériel utilisé<a class="headerlink" href="#id1" title="Lien permanent vers cette rubrique">¶</a></h2>
 <ul class="simple">
 <li><p><strong>LoPy4 Pycom</strong></p></li>
 </ul>
 </section>
 <section id="id2">
-<h2>Logiciel utilisé<a class="headerlink" href="#id2" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Logiciel utilisé<a class="headerlink" href="#id2" title="Lien permanent vers cette rubrique">¶</a></h2>
 <section id="pymakr-via-vs-code">
-<h3>Pymakr via VS Code<a class="headerlink" href="#pymakr-via-vs-code" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Pymakr via VS Code<a class="headerlink" href="#pymakr-via-vs-code" title="Lien permanent vers cette rubrique">¶</a></h3>
 <p>Mise en place :</p>
 <ol class="arabic simple">
 <li><p>Installer l’extension <strong>Pymakr</strong> sur <strong>VS Code</strong>.</p></li>
@@ -99,7 +98,7 @@
 </ol>
 </section>
 <section id="code-utilise">
-<h3>Code utilisé<a class="headerlink" href="#code-utilise" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Code utilisé<a class="headerlink" href="#code-utilise" title="Lien permanent vers cette rubrique">¶</a></h3>
 <p>Les scripts sont disponibles dans le répertoire <strong>`noeud_pycom`</strong> du dépôt Git.</p>
 <ul class="simple">
 <li><p><strong>Fichier principal</strong> : <cite>simulation_capteur_humidité.py</cite></p>
@@ -112,22 +111,68 @@
 </section>
 </section>
 </section>
+<section id="configuration-chirpstack">
+<h1>Configuration ChirpStack<a class="headerlink" href="#configuration-chirpstack" title="Lien permanent vers cette rubrique">¶</a></h1>
+<p>1- Connecter au réseau de ChirpStack
+- SSID: ChirpStackAP-d5b60e
+- Password: ChirpStackAP</p>
+<p>2- Configurer la paserelle dans ChirpStack</p>
+<ul>
+<li><p>Il est nécessaire d’enregistrer le Gateway ID du passerelle dans ChirpStack afin que le serveur puisse l’authentifier, la reconnaître et router correctement les données des nœuds.</p></li>
+<li><dl>
+<dt>Le Gateway ID est l’addresse MAC du Raspberry Pi, on peut l’extraire:</dt><dd><p>-lier le Raspberry Pi à un moniteur via un HDMI. Un clavier et une souris via un USB sur les ports du Raspberry pi.</p>
+<p>-Dans la console, taper: « ip link »</p>
+<p>-La MAC est la valeur après « link/ether »</p>
+<p>-Transformer la MAC en Gateway EUI64 en supprimant les « : » et insérant « fffe » au milieu</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>3- Configuration du device</p>
+<ul>
+<li><dl>
+<dt>On peut extraire le devEUI du device à partir du terminal Pymakr après « &gt;&gt;&gt; » insérer le code suivant:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">network</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoRa</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">ubinascii</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lora</span> <span class="o">=</span> <span class="n">LoRa</span><span class="p">(</span><span class="n">mode</span><span class="o">=</span><span class="n">LoRa</span><span class="o">.</span><span class="n">LORAWAN</span><span class="p">,</span> <span class="n">region</span><span class="o">=</span><span class="n">LoRa</span><span class="o">.</span><span class="n">EU868</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ubinascii</span><span class="o">.</span><span class="n">hexlify</span><span class="p">(</span><span class="n">lora</span><span class="o">.</span><span class="n">mac</span><span class="p">()</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><p>Après la génération du « Application Key » dans l’onglet « OTAA Keys » du device, il faut bien la changer dans les codes qui se trouvent dans « noeud_pycom ».</p></li>
+<li><p>Après l’insértion du bonne clé dans le code, il faut le téléverser à nouveau dans le noeud lopy4.</p>
+<blockquote>
+<div><p>-Si l’Upload échoue, supprimer manuellement le contenu de flash du lopy dans le terminal « Pymakr » après « &gt;&gt;&gt; »:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">os</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;main.py&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>-Puis, forcer le nouveau code avec:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span><span class="w"> </span><span class="nn">main</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+<p>4- Si la passerelle et le device sont correctement configurés, on voit dans l’onglet « LoRaWANFrames » du ChirpStack un JoinRequest et un JoinAccept, confirmant l’activation OTAA. Ensuite apparaissent des UnconfirmedDataUp, envoyés par le capteur sans ACK pour économiser la batterie, ne pas saturer le réseau et pouvant être exploités pour une attaque par rejeu.</p>
+</section>
 <section id="noeud-attaquant">
-<h1>Noeud attaquant<a class="headerlink" href="#noeud-attaquant" title="Lien vers cette rubrique">¶</a></h1>
+<h1>Noeud attaquant<a class="headerlink" href="#noeud-attaquant" title="Lien permanent vers cette rubrique">¶</a></h1>
 <section id="id3">
-<h2>Matériel utilisé<a class="headerlink" href="#id3" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Matériel utilisé<a class="headerlink" href="#id3" title="Lien permanent vers cette rubrique">¶</a></h2>
 <ul class="simple">
 <li><p><strong>Arduino Dragino</strong></p></li>
 </ul>
 </section>
 <section id="id4">
-<h2>Logiciel utilisé<a class="headerlink" href="#id4" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Logiciel utilisé<a class="headerlink" href="#id4" title="Lien permanent vers cette rubrique">¶</a></h2>
 <section id="arduino-ide">
-<h3>Arduino IDE<a class="headerlink" href="#arduino-ide" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Arduino IDE<a class="headerlink" href="#arduino-ide" title="Lien permanent vers cette rubrique">¶</a></h3>
 <p>Ou directement via un terminal Linux.</p>
 </section>
 <section id="bibliotheques-utilisees">
-<h3>Bibliothèques utilisées<a class="headerlink" href="#bibliotheques-utilisees" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Bibliothèques utilisées<a class="headerlink" href="#bibliotheques-utilisees" title="Lien permanent vers cette rubrique">¶</a></h3>
 <p>Pour ce projet, nous utilisons plusieurs bibliothèques Arduino compatibles avec LoRaWAN :</p>
 <ul class="simple">
 <li><p><strong>LoRa</strong> de <strong>Sandeep Mistry</strong> (v0.8.0)</p></li>
@@ -171,6 +216,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#id2">Logiciel utilisé</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="#configuration-chirpstack">Configuration ChirpStack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#noeud-attaquant">Noeud attaquant</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#id3">Matériel utilisé</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id4">Logiciel utilisé</a></li>
@@ -189,7 +235,7 @@
   </ul></li>
 </ul>
 </div>
-<search id="searchbox" style="display: none" role="search">
+<div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Recherche rapide</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -197,7 +243,7 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</search>
+</div>
 <script>document.getElementById('searchbox').style.display = "block"</script>
 
 
@@ -212,11 +258,11 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &#169;2025, Atbane, Friboulet.
+      &copy;2025, Atbane, Friboulet.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
       <a href="_sources/introduction.rst.txt"

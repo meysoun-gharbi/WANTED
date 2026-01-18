@@ -68,12 +68,19 @@ Implications pour l'attaque
 Protections Contre-Mesures
 --------------------------
 - **OTAA sécurisé** :
+
   - Utilisation d'AppKey complexes
+
   - Rotation périodique des clés racines
+
 - **Détection** :
+
   - Surveillance des anomalies de JoinNonce
+
   - Analyse des variations de RSSI (détection jamming)
+
 - **Chiffrement** :
+
   - Activation systématique de AES-128 (même en public network)
 
 .. warning::

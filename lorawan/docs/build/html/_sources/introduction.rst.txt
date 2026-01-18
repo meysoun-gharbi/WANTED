@@ -70,6 +70,49 @@ Les scripts sont disponibles dans le répertoire **`noeud_pycom`** du dépôt Gi
   
   - Ce fichier simule un capteur d’humidité.
   - Les clés cryptographiques peuvent être modifiées directement dans le code.
+ 
+
+Configuration ChirpStack 
+=========================
+1- Connecter au réseau de ChirpStack 
+- SSID: ChirpStackAP-d5b60e
+- Password: ChirpStackAP
+
+2- Configurer la paserelle dans ChirpStack 
+
+- Il est nécessaire d’enregistrer le Gateway ID du passerelle dans ChirpStack afin que le serveur puisse l’authentifier, la reconnaître et router correctement les données des nœuds.
+- Le Gateway ID est l'addresse MAC du Raspberry Pi, on peut l'extraire:
+ 	-lier le Raspberry Pi à un moniteur via un HDMI. Un clavier et une souris via un USB sur les ports du Raspberry pi.
+ 	
+ 	-Dans la console, taper: "ip link"
+ 	
+ 	-La MAC est la valeur après "link/ether"
+ 	
+ 	-Transformer la MAC en Gateway EUI64 en supprimant les ":" et insérant "fffe" au milieu 
+
+3- Configuration du device
+
+- On peut extraire le devEUI du device à partir du terminal Pymakr après ">>>" insérer le code suivant:
+	>>> from network import LoRa
+	>>> import ubinascii
+	>>> lora = LoRa(mode=LoRa.LORAWAN, region=LoRa.EU868)
+	>>> print(ubinascii.hexlify(lora.mac().upper())
+
+- Après la génération du "Application Key" dans l'onglet "OTAA Keys" du device, il faut bien la changer dans les codes qui se trouvent dans "noeud_pycom".
+
+- Après l'insértion du bonne clé dans le code, il faut le téléverser à nouveau dans le noeud lopy4.
+
+	-Si l'Upload échoue, supprimer manuellement le contenu de flash du lopy dans le terminal "Pymakr" après ">>>":
+	
+	>>> import os
+	>>> os.remove('main.py')
+	
+	-Puis, forcer le nouveau code avec:
+	
+	>>> import main
+	
+
+4- Si la passerelle et le device sont correctement configurés, on voit dans l'onglet "LoRaWANFrames" du ChirpStack un JoinRequest et un JoinAccept, confirmant l’activation OTAA. Ensuite apparaissent des UnconfirmedDataUp, envoyés par le capteur sans ACK pour économiser la batterie, ne pas saturer le réseau et pouvant être exploités pour une attaque par rejeu.
 
 Noeud attaquant
 ===============

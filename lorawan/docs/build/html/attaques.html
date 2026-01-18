@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 
-<html lang="fr" data-content_root="./">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Attaques &#8212; Documentation Reproduction d&#39;attaques sur LoRaWAN 1.0</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
-    <script src="_static/documentation_options.js?v=7a28dfa3"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/translations.js?v=bf059b8c"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=6625fa76" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=bd10cbeb"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/translations.js?v=d99ca74e"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="next" title="Scénario" href="scenario.html" />
@@ -19,9 +19,8 @@
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-
   
-  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
   
@@ -34,11 +33,11 @@
           <div class="body" role="main">
             
   <section id="attaques">
-<h1>Attaques<a class="headerlink" href="#attaques" title="Lien vers cette rubrique">¶</a></h1>
+<h1>Attaques<a class="headerlink" href="#attaques" title="Lien permanent vers cette rubrique">¶</a></h1>
 <section id="attaque-sur-cles-basiques">
-<h2>Attaque sur clés basiques<a class="headerlink" href="#attaque-sur-cles-basiques" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Attaque sur clés basiques<a class="headerlink" href="#attaque-sur-cles-basiques" title="Lien permanent vers cette rubrique">¶</a></h2>
 <section id="contexte">
-<h3>Contexte<a class="headerlink" href="#contexte" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Contexte<a class="headerlink" href="#contexte" title="Lien permanent vers cette rubrique">¶</a></h3>
 <p>Dans un réseau LoRaWAN agricole utilisant une version obsolète de LoRaMAC (comme la 1.0.x), plusieurs failles de sécurité sont présentes :</p>
 <ul class="simple">
 <li><p><strong>Ancienne version du protocole</strong> : LoRaMAC 1.0.x utilise moins de clés de sécurité, ce qui le rend vulnérable par rapport à la version 1.1.x.</p></li>
@@ -47,11 +46,11 @@
 <p>Ces vulnérabilités rendent le réseau facile à attaquer. L’objectif est d’exploiter cette faiblesse liée au choix des identifiants.</p>
 </section>
 <section id="methodologie-de-l-attaque">
-<h3>Méthodologie de l’attaque<a class="headerlink" href="#methodologie-de-l-attaque" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Méthodologie de l’attaque<a class="headerlink" href="#methodologie-de-l-attaque" title="Lien permanent vers cette rubrique">¶</a></h3>
 <p>L’attaque repose sur la force brute du <strong>DevEUI</strong> et de l”<strong>AppKey</strong>, ce qui permet d’établir une connexion avec la passerelle et d’envoyer ensuite des données falsifiées.</p>
 </section>
 <section id="rappel-des-cles-de-securite-dans-loramac-1-0-x-en-utilisant-otaa">
-<h3>Rappel des clés de sécurité dans LoRaMAC 1.0.x en utilisant OTAA<a class="headerlink" href="#rappel-des-cles-de-securite-dans-loramac-1-0-x-en-utilisant-otaa" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Rappel des clés de sécurité dans LoRaMAC 1.0.x en utilisant OTAA<a class="headerlink" href="#rappel-des-cles-de-securite-dans-loramac-1-0-x-en-utilisant-otaa" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ul class="simple">
 <li><p><strong>AppKey</strong> : Sécurise l’activation OTAA et génère les clés de session.</p></li>
 <li><p><strong>AppSKey</strong> : Chiffre/déchiffre les données utilisateur.</p></li>
@@ -59,7 +58,7 @@
 </ul>
 </section>
 <section id="contre-mesures-et-recommandations">
-<h3>Contre-mesures et recommandations<a class="headerlink" href="#contre-mesures-et-recommandations" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Contre-mesures et recommandations<a class="headerlink" href="#contre-mesures-et-recommandations" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ul class="simple">
 <li><p>Mettre à jour vers <strong>LoRaMAC 1.1.x</strong> pour bénéficier des améliorations de sécurité.</p></li>
 <li><p>Utiliser des clés cryptographiques <strong>complexes et aléatoires</strong>, difficiles à deviner.</p></li>
@@ -67,14 +66,14 @@
 </ul>
 </section>
 <section id="ameliorations-possibles">
-<h3>Améliorations possibles<a class="headerlink" href="#ameliorations-possibles" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Améliorations possibles<a class="headerlink" href="#ameliorations-possibles" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Étendre la bibliothèque de clés</strong> pour tester un plus grand nombre de combinaisons courantes dans les déploiements vulnérables.</p></li>
 <li><p><strong>Optimiser les délais d’attente</strong> pour réduire le temps total d’exécution sans compromettre la fiabilité des tests.</p></li>
 </ul>
 </section>
 <section id="limites-de-l-attaque">
-<h3>Limites de l’attaque<a class="headerlink" href="#limites-de-l-attaque" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Limites de l’attaque<a class="headerlink" href="#limites-de-l-attaque" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Temps d’exécution croissant</strong> : Plus le nombre de clés testées est élevé, plus le temps de brute-force augmente de manière exponentielle.</p></li>
 <li><p><strong>Délais à respecter</strong> : Chaque test doit respecter un délai (~10-15s) pour laisser la connexion s’établir.</p></li>
@@ -94,7 +93,7 @@
 <p><strong>Conclusion</strong> : Bien que l’attaque soit efficace contre des identifiants faibles, son efficacité dépend fortement du contexte et du nombre de clés testées.</p>
 </section>
 <section id="deploiement">
-<h3>Déploiement<a class="headerlink" href="#deploiement" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Déploiement<a class="headerlink" href="#deploiement" title="Lien permanent vers cette rubrique">¶</a></h3>
 <p>Le code source de cette attaque est disponible dans le répertoire :
 <code class="docutils literal notranslate"><span class="pre">attaques/attaque_cles_basiques</span></code></p>
 <p>Deux plateformes matérielles peuvent être utilisées :</p>
@@ -103,13 +102,13 @@
 <li><p><strong>LoPy4</strong> (déjà utilisé comme nœud légitime, donc moins privilégié ici)</p></li>
 </ol>
 <section id="utilisation-avec-lopy4">
-<h4>Utilisation avec LoPy4<a class="headerlink" href="#utilisation-avec-lopy4" title="Lien vers cette rubrique">¶</a></h4>
+<h4>Utilisation avec LoPy4<a class="headerlink" href="#utilisation-avec-lopy4" title="Lien permanent vers cette rubrique">¶</a></h4>
 <p>Si on veut quand même utiliser un <strong>LoPy4</strong> pour cette attaque, il suffit de flasher le code contenu dans :</p>
 <p><code class="docutils literal notranslate"><span class="pre">attaques/attaque_cles_basiques/pycom</span></code></p>
 <p>via <strong>Pymakr</strong> sur un autre LoPy4, comme nous l’avons fait pour le nœud légitime.</p>
 </section>
 <section id="utilisation-avec-arduino-dragino">
-<h4>Utilisation avec Arduino Dragino<a class="headerlink" href="#utilisation-avec-arduino-dragino" title="Lien vers cette rubrique">¶</a></h4>
+<h4>Utilisation avec Arduino Dragino<a class="headerlink" href="#utilisation-avec-arduino-dragino" title="Lien permanent vers cette rubrique">¶</a></h4>
 <p>Avant de commencer, il faut installer la bibliothèque <strong>MCCI LoRaWAN LMIC</strong> disponible ici :
 <cite>https://github.com/mcci-catena/arduino-lorawan.git</cite></p>
 <p>Cette bibliothèque est disponible directement dans <strong>Arduino IDE</strong> et permet de créer un nœud LoRaWAN avec du matériel Arduino Dragino, ce qui est indispensable pour réaliser cette attaque.</p>
@@ -136,9 +135,9 @@
 </section>
 </section>
 <section id="sniffing">
-<h2>Sniffing<a class="headerlink" href="#sniffing" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Sniffing<a class="headerlink" href="#sniffing" title="Lien permanent vers cette rubrique">¶</a></h2>
 <section id="id1">
-<h3>Contexte<a class="headerlink" href="#id1" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Contexte<a class="headerlink" href="#id1" title="Lien permanent vers cette rubrique">¶</a></h3>
 <p>Le sniffing LoRaWAN consiste à intercepter passivement les communications radio entre les dispositifs et la passerelle. Cette technique permet :</p>
 <ul class="simple">
 <li><p>D’analyser le trafic réseau pour identifier des vulnérabilités</p></li>
@@ -147,7 +146,7 @@
 </ul>
 </section>
 <section id="methodologie">
-<h3>Méthodologie<a class="headerlink" href="#methodologie" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Méthodologie<a class="headerlink" href="#methodologie" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Configuration matérielle</strong> :
 - Utilisation d’un Arduino Dragino
@@ -161,7 +160,7 @@
 </ol>
 </section>
 <section id="exemple-de-paquets-captures">
-<h3>Exemple de paquets capturés<a class="headerlink" href="#exemple-de-paquets-captures" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Exemple de paquets capturés<a class="headerlink" href="#exemple-de-paquets-captures" title="Lien permanent vers cette rubrique">¶</a></h3>
 <p>Join-Request typique :</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>00 00 00 00 00 00 00 00 00 57 2A 71 99 49 D5 B3 70 DD 7C 93 36 E4 C9
 </pre></div>
@@ -184,7 +183,7 @@
 </ul>
 </section>
 <section id="outils-necessaires">
-<h3>Outils nécessaires<a class="headerlink" href="#outils-necessaires" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Outils nécessaires<a class="headerlink" href="#outils-necessaires" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Matériel</strong> :
 - Arduino Dragino
@@ -195,9 +194,9 @@
 </ul>
 </section>
 <section id="id2">
-<h3>Déploiement<a class="headerlink" href="#id2" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Déploiement<a class="headerlink" href="#id2" title="Lien permanent vers cette rubrique">¶</a></h3>
 <section id="installation-du-sniffer">
-<h4>Installation du sniffer<a class="headerlink" href="#installation-du-sniffer" title="Lien vers cette rubrique">¶</a></h4>
+<h4>Installation du sniffer<a class="headerlink" href="#installation-du-sniffer" title="Lien permanent vers cette rubrique">¶</a></h4>
 <ol class="arabic">
 <li><p>Flasher le code sur l’Arduino :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>arduino<span class="w"> </span>--upload<span class="w"> </span>attaques/attaque_rejeu/replay_arduino/arduino_sniffer/arduino_sniffer.ino<span class="w"> </span>--port<span class="w"> </span>/dev/ttyACM1
@@ -212,7 +211,7 @@
 </ol>
 </section>
 <section id="automatisation-avec-le-script-sniffer">
-<h4>Automatisation avec le script sniffer<a class="headerlink" href="#automatisation-avec-le-script-sniffer" title="Lien vers cette rubrique">¶</a></h4>
+<h4>Automatisation avec le script sniffer<a class="headerlink" href="#automatisation-avec-le-script-sniffer" title="Lien permanent vers cette rubrique">¶</a></h4>
 <p>Le script <code class="docutils literal notranslate"><span class="pre">sniffer.sh</span></code> permet d’automatiser la capture :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./attaques/attaque_rejeu/replay_arduino/arduino_sniffer/sniffer.sh<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-p<span class="w"> </span>/dev/ttyACM1<span class="w"> </span><span class="se">\</span>
@@ -229,7 +228,7 @@
 </section>
 </section>
 <section id="analyse-avancee">
-<h3>Analyse avancée<a class="headerlink" href="#analyse-avancee" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Analyse avancée<a class="headerlink" href="#analyse-avancee" title="Lien permanent vers cette rubrique">¶</a></h3>
 <p>Pour interpréter les captures :</p>
 <ol class="arabic simple">
 <li><p><strong>Identifier le type de message</strong> via le MHDR :
@@ -245,14 +244,14 @@
 </ol>
 </section>
 <section id="contre-mesures">
-<h3>Contre-mesures<a class="headerlink" href="#contre-mesures" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Contre-mesures<a class="headerlink" href="#contre-mesures" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Activer le chiffrement</strong> (AES-128) pour empêcher la lecture des payloads</p></li>
 <li><p><strong>Utiliser des MIC robustes</strong> et vérifier systématiquement leur validité</p></li>
 </ul>
 </section>
 <section id="limites">
-<h3>Limites<a class="headerlink" href="#limites" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Limites<a class="headerlink" href="#limites" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Portée limitée</strong> : Nécessité d’être à proximité physique du réseau</p></li>
 <li><p><strong>Dépendance matérielle</strong> : Sensibilité du récepteur</p></li>
@@ -262,9 +261,9 @@
 </section>
 </section>
 <section id="attaque-par-rejeu">
-<h2>Attaque par rejeu<a class="headerlink" href="#attaque-par-rejeu" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Attaque par rejeu<a class="headerlink" href="#attaque-par-rejeu" title="Lien permanent vers cette rubrique">¶</a></h2>
 <section id="id3">
-<h3>Contexte<a class="headerlink" href="#id3" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Contexte<a class="headerlink" href="#id3" title="Lien permanent vers cette rubrique">¶</a></h3>
 <p>Dans un réseau LoRaWAN vulnérable, l’attaque par rejeu (<em>replay attack</em>) exploite la retransmission de paquets légitimes capturés pour :</p>
 <ul class="simple">
 <li><p>Perturber le réseau en saturant la passerelle.</p></li>
@@ -278,7 +277,7 @@
 </ul>
 </section>
 <section id="id4">
-<h3>Méthodologie de l’attaque<a class="headerlink" href="#id4" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Méthodologie de l’attaque<a class="headerlink" href="#id4" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Capture de paquets</strong> :
 - Utilisation d’un sniffer (exemple : LoRattack avec USRP) ou d’un Arduino Dragino avec l’outil de sniffing défini dans la section Sniffing de cette documentation.
@@ -292,7 +291,7 @@
 </ol>
 </section>
 <section id="exemple-de-paquet-capture">
-<h3>Exemple de paquet capturé<a class="headerlink" href="#exemple-de-paquet-capture" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Exemple de paquet capturé<a class="headerlink" href="#exemple-de-paquet-capture" title="Lien permanent vers cette rubrique">¶</a></h3>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>40 E2 F1 54 00 00 05 00 02 BF AE FF F4 7D 78 9A A3 0E 61 44 A7 39 90 93 9E 25 E2
 </pre></div>
 </div>
@@ -303,7 +302,7 @@
 </ul>
 </section>
 <section id="id5">
-<h3>Outils nécessaires<a class="headerlink" href="#id5" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Outils nécessaires<a class="headerlink" href="#id5" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Matériel</strong> :
 - Carte Arduino Dragino de préférence ou USRP (pour LoRattack).</p></li>
@@ -313,9 +312,9 @@
 </ul>
 </section>
 <section id="id7">
-<h3>Déploiement<a class="headerlink" href="#id7" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Déploiement<a class="headerlink" href="#id7" title="Lien permanent vers cette rubrique">¶</a></h3>
 <section id="avec-lorattack-usrp">
-<h4>Avec LoRattack (USRP)<a class="headerlink" href="#avec-lorattack-usrp" title="Lien vers cette rubrique">¶</a></h4>
+<h4>Avec LoRattack (USRP)<a class="headerlink" href="#avec-lorattack-usrp" title="Lien permanent vers cette rubrique">¶</a></h4>
 <ol class="arabic">
 <li><p>Installer les dépendances :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>gnuradio<span class="w"> </span>bittwist<span class="w"> </span>uhd-host
@@ -335,7 +334,7 @@ Lancer<span class="w"> </span>./run.sh<span class="w"> </span>et<span class="w">
 </ol>
 </section>
 <section id="avec-arduino-dragino-de-maniere-manuelle">
-<h4>Avec Arduino Dragino (de manière manuelle)<a class="headerlink" href="#avec-arduino-dragino-de-maniere-manuelle" title="Lien vers cette rubrique">¶</a></h4>
+<h4>Avec Arduino Dragino (de manière manuelle)<a class="headerlink" href="#avec-arduino-dragino-de-maniere-manuelle" title="Lien permanent vers cette rubrique">¶</a></h4>
 <ol class="arabic">
 <li><p>Flasher le code de rejeu en veillant à modifier le paquet à rejouer dans le code source :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>arduino<span class="w"> </span>--upload<span class="w"> </span>attaques/attaque_rejeu/replay_arduino/arduino_player/arduino_player.ino<span class="w"> </span>--port<span class="w"> </span>/dev/ttyACM1
@@ -350,7 +349,7 @@ Lancer<span class="w"> </span>./run.sh<span class="w"> </span>et<span class="w">
 </ol>
 </section>
 <section id="avec-arduino-dragino-de-maniere-automatisee">
-<h4>Avec Arduino Dragino (de manière automatisée)<a class="headerlink" href="#avec-arduino-dragino-de-maniere-automatisee" title="Lien vers cette rubrique">¶</a></h4>
+<h4>Avec Arduino Dragino (de manière automatisée)<a class="headerlink" href="#avec-arduino-dragino-de-maniere-automatisee" title="Lien permanent vers cette rubrique">¶</a></h4>
 <ol class="arabic">
 <li><p>Flasher le code de rejeu automatisé :</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>arduino<span class="w"> </span>--upload<span class="w"> </span>attaques/attaque_rejeu/replay_arduino/arduino_total_replay/arduino_total_replay.ino<span class="w"> </span>--port<span class="w"> </span>/dev/ttyACM1
@@ -366,7 +365,7 @@ Lancer<span class="w"> </span>./run.sh<span class="w"> </span>et<span class="w">
 </section>
 </section>
 <section id="id8">
-<h3>Contre-mesures<a class="headerlink" href="#id8" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Contre-mesures<a class="headerlink" href="#id8" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Validation stricte du FCnt</strong> : Rejeter les paquets avec un compteur inférieur ou égal à la dernière valeur enregistrée.</p></li>
 <li><p><strong>Rotation des clés de session</strong> : Limiter la durée de vie des NwkSKey/AppSKey, en renouvelant les sessions régulièrement.</p></li>
@@ -374,7 +373,7 @@ Lancer<span class="w"> </span>./run.sh<span class="w"> </span>et<span class="w">
 </ul>
 </section>
 <section id="id9">
-<h3>Limites<a class="headerlink" href="#id9" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Limites<a class="headerlink" href="#id9" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Efficacité réduite</strong> : Si le réseau vérifie les MIC et FCnt, les paquets rejoués sont ignorés.</p></li>
 <li><p><strong>Portée limitée</strong> : Nécessite une proximité physique avec le réseau cible.</p></li>
@@ -382,7 +381,7 @@ Lancer<span class="w"> </span>./run.sh<span class="w"> </span>et<span class="w">
 </ul>
 </section>
 <section id="exemple-pratique">
-<h3>Exemple pratique<a class="headerlink" href="#exemple-pratique" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Exemple pratique<a class="headerlink" href="#exemple-pratique" title="Lien permanent vers cette rubrique">¶</a></h3>
 <p>Un paquet rejoué avec succès (FCnt incrémenté) :</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[ORIGINAL]  40...05 00...93 9E 25 E2
 [REPLAYED]  40...06 00...A1 B2 C3 D4  # MIC invalide, mais FCnt mis à jour
@@ -393,7 +392,264 @@ Lancer<span class="w"> </span>./run.sh<span class="w"> </span>et<span class="w">
 </section>
 </section>
 <section id="attaque-de-brouillage">
-<h2>Attaque de brouillage<a class="headerlink" href="#attaque-de-brouillage" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Attaque de brouillage<a class="headerlink" href="#attaque-de-brouillage" title="Lien permanent vers cette rubrique">¶</a></h2>
+<section id="id10">
+<h3>Contexte<a class="headerlink" href="#id10" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>Le brouillage radio (jamming) est une forme d’attaque par déni de service (DoS) qui vise à perturber les communications sans intercepter les données. Elle consiste à inonder un canal radio avec des signaux parasites pour empêcher les nœuds LoRaWAN de transmettre ou de recevoir correctement.</p>
+<p>Il existe plusieurs types de brouillage :</p>
+<ul class="simple">
+<li><p><strong>Brouillage continu (constant jamming)</strong> : envoi constant de signaux pour occuper le canal.</p></li>
+<li><p><strong>Brouillage réactif (reactive jamming)</strong> : envoi d’un signal dès qu’un paquet est détecté.</p></li>
+<li><p><strong>Brouillage aléatoire (random jamming)</strong> : émission de signaux à intervalles irréguliers.</p></li>
+<li><p><strong>Brouillage ciblé (trigger ou selective jamming)</strong> : attaque déclenchée à la détection d’un certain type de trame ou contenu.</p></li>
+</ul>
+<p>Dans cette documentation, nous allons nous concentrer sur le brouillage de type “deny”, c’est-à-dire une attaque simple et continue qui vise à saturer le canal radio LoRaWAN pour empêcher toute autre communication légitime.</p>
+</section>
+<section id="id11">
+<h3>Méthodologie de l’attaque<a class="headerlink" href="#id11" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>L’attaque consiste à utiliser un nœud LoRa pour transmettre en boucle un message répétitif, sans respecter les intervalles habituels entre deux transmissions. Le message contient simplement une chaîne de caractères (par exemple « JammingJamming… ») répétée, qui n’a aucune signification fonctionnelle, mais occupe le temps d’antenne radio.</p>
+<p>Le nœud utilise la même configuration que les dispositifs du réseau cible :</p>
+<ul class="simple">
+<li><p><strong>Fréquence</strong> : 868,3 MHz</p></li>
+<li><p><strong>Spreading Factor</strong> : SF7</p></li>
+<li><p><strong>Bande passante</strong> : 125 kHz</p></li>
+<li><p><strong>Coding rate</strong> : 4/5</p></li>
+</ul>
+<p>Grâce à cette configuration, l’attaque peut interférer efficacement avec la passerelle et bloquer les communications entrantes des vrais capteurs.</p>
+</section>
+<section id="id12">
+<h3>Déploiement<a class="headerlink" href="#id12" title="Lien permanent vers cette rubrique">¶</a></h3>
+<section id="materiel-utilise">
+<h4>Matériel utilisé :<a class="headerlink" href="#materiel-utilise" title="Lien permanent vers cette rubrique">¶</a></h4>
+<ul class="simple">
+<li><p><strong>LoPy4</strong> (nœud légitime)</p></li>
+<li><p><strong>Arduino Dragino</strong> (nœud de brouillage)</p></li>
+<li><p><strong>Passerelle LoRaWAN</strong> configurée sur la fréquence 868,3 MHz</p></li>
+</ul>
+</section>
+<section id="etapes">
+<h4>Étapes :<a class="headerlink" href="#etapes" title="Lien permanent vers cette rubrique">¶</a></h4>
+<ol class="arabic simple">
+<li><p>Mise en place du nœud légitime (LoPy4) :</p></li>
+</ol>
+<ul class="simple">
+<li><p>Ouvrir Pymakr ou VSCode avec le plugin Pycom.</p></li>
+<li><p>Charger le script de transmission qui se trouve dans : <code class="docutils literal notranslate"><span class="pre">reproduction-attaques-lorawan/noeud_pycom/message_pycom.py</span></code>   vers la passerelle.</p></li>
+<li><p>Lancer le code et observer la réception dans l’interface ChirpStack</p></li>
+</ul>
+<p>Une fois le fonctionnement normal confirmé (messages visibles sur ChirpStack), on initialise l’attaque.</p>
+<p>2. Mise en place du nœud brouilleur (Arduino Dragino) :
+- Ouvrir le fichier suivant dans l’IDE Arduino : <code class="docutils literal notranslate"><span class="pre">reproduction-attaques-lorawan/attaques/brouillage/jamming_deny/jamming_deny.ino</span></code></p>
+<ul class="simple">
+<li><p>S’assurer que les paramètres LoRa sont identiques à ceux du LoPy4 :</p></li>
+</ul>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>LoRa.begin<span class="o">(</span><span class="m">868</span>.3E6<span class="o">)</span><span class="p">;</span>
+LoRa.setSpreadingFactor<span class="o">(</span><span class="m">7</span><span class="o">)</span><span class="p">;</span>
+LoRa.setSignalBandwidth<span class="o">(</span>125E3<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>Connecter l’Arduino et téléverser le code</p></li>
+</ul>
+<p>Le code de brouillage est flashé sur l’Arduino Dragino. Ce dernier transmet en boucle un message répétitif (par exemple « JammingJamming… ») sur la même fréquence et avec les mêmes paramètres LoRa (SF7, BW 125 kHz).</p>
+<ol class="arabic simple" start="3">
+<li><p>Observation des effets de l’attaque :</p></li>
+</ol>
+<p>Dès l’activation du brouillage, on observe une interruption de la réception des messages du LoPy4 par la passerelle.
+Cette coupure confirme que le canal est saturé par le nœud attaquant et que l’attaque de type deny est efficace.</p>
+<p>L’envoi peut être vérifié via le moniteur série de l’IDE Arduino, où un message de confirmation s’affiche après chaque transmission.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>JAM_SUCCES<span class="p">;</span>
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+<section id="id13">
+<h3>Contre-mesures et recommandations<a class="headerlink" href="#id13" title="Lien permanent vers cette rubrique">¶</a></h3>
+<ul class="simple">
+<li><p>Activer la détection d’interférences au niveau de la passerelle, si disponible.</p></li>
+<li><p>Surveiller le taux de perte de paquets pour détecter une activité anormale.</p></li>
+<li><p>Utiliser le frequency hopping (saut de fréquence) pour réduire l’impact du brouillage.</p></li>
+<li><p>Mettre en place des mécanismes de priorité ou de répétition adaptative dans les capteurs.</p></li>
+</ul>
+</section>
+<section id="id14">
+<h3>Limites<a class="headerlink" href="#id14" title="Lien permanent vers cette rubrique">¶</a></h3>
+<ul class="simple">
+<li><p>Portée physique réduite : L’attaquant doit être proche de la passerelle ou des nœuds pour être efficace.</p></li>
+<li><p>Consommation énergétique élevée : L’attaque nécessite une émission continue, ce qui peut vider rapidement la batterie du dispositif malveillant.</p></li>
+<li><p>Détection possible : Une activité radio anormale peut être repérée avec des outils de monitoring RF.</p></li>
+</ul>
+</section>
+</section>
+<section id="attaque-d-epuisement-de-batterie">
+<h2>Attaque d’Épuisement de batterie<a class="headerlink" href="#attaque-d-epuisement-de-batterie" title="Lien permanent vers cette rubrique">¶</a></h2>
+<section id="id15">
+<h3>Contexte<a class="headerlink" href="#id15" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>L’attaque par épuisement de batterie (ou « Battery Exhaustion ») est une variante du déni de service (DoS) qui ne cible pas la disponibilité du réseau, mais la durée de vie physique des capteurs. Dans un contexte agricole ou industriel, où les capteurs sont souvent autonomes et difficiles d’accès, cette attaque peut paralyser un déploiement sur le long terme.</p>
+</section>
+<section id="id16">
+<h3>Méthodologie de l’attaque<a class="headerlink" href="#id16" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>L’attaquant exploite le mécanisme d’écoute des fenêtres de réception (RX1 et RX2) du nœud final :</p>
+<ol class="arabic simple">
+<li><p>Ciblage de la fenêtre RX2 : L’attaquant attend qu’un capteur émette une donnée (Uplink). Il calcule ensuite le moment exact où le capteur ouvrira sa deuxième fenêtre de réception (RX2), soit généralement 2 secondes après l’émission.</p></li>
+<li><p>Saturation du récepteur : L’attaquant envoie un faux message long et complexe avec un préambule valide durant cette fenêtre. Le capteur est alors forcé de rester en mode réception active (consommation élevée) pour décoder la trame, au lieu de retourner immédiatement en mode « Deep Sleep ».</p></li>
+</ol>
+</section>
+<section id="id17">
+<h3>Déploiement<a class="headerlink" href="#id17" title="Lien permanent vers cette rubrique">¶</a></h3>
+<section id="id18">
+<h4>Matériel utilisé :<a class="headerlink" href="#id18" title="Lien permanent vers cette rubrique">¶</a></h4>
+<ul class="simple">
+<li><p><strong>LoPy4</strong> (nœud légitime)</p></li>
+<li><p><strong>Arduino Dragino</strong> (nœud de Déni de batterie)</p></li>
+<li><p><strong>Passerelle LoRaWAN</strong> configurée sur la fréquence 868,3 MHz</p></li>
+</ul>
+</section>
+<section id="id19">
+<h4>Étapes :<a class="headerlink" href="#id19" title="Lien permanent vers cette rubrique">¶</a></h4>
+</section>
+</section>
+<section id="mise-en-place-du-noeud-attaquant-arduino">
+<h3>1. Mise en place du nœud attaquant (Arduino)<a class="headerlink" href="#mise-en-place-du-noeud-attaquant-arduino" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>Flashez le code sur l’Arduino Dragino :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Vérifiez le port avec &#39;ls /dev/tty*&#39; au préalable</span>
+arduino<span class="w"> </span>--upload<span class="w"> </span>attaques/energy_depletion/energy_depletion.ino<span class="w"> </span>--port<span class="w"> </span>/dev/ttyACM1
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Justification de la configuration :</strong></dt><dd><p>Le choix de cibler <strong>RX2</strong> est stratégique car ses paramètres sont publics et normalisés :</p>
+<ul class="simple">
+<li><p><strong>Fréquence fixe :</strong> En Europe, elle est fixée par défaut à <strong>869.525 MHz</strong>.</p></li>
+<li><p><strong>Paramètres prévisibles :</strong> Le Spreading Factor (SF) et la bande passante sont constants. Contrairement à RX1, RX2 permet à un attaquant de se caler sur une cible sans analyse préalable.</p></li>
+</ul>
+</dd>
+<dt><strong>Logique du code :</strong></dt><dd><ul class="simple">
+<li><p><strong>Détection :</strong> Écoute sur la fréquence Uplink (868.3 MHz).</p></li>
+<li><p><strong>Synchronisation :</strong> Délai de <code class="docutils literal notranslate"><span class="pre">1950ms</span></code> pour s’aligner sur l’ouverture de la fenêtre RX2.</p></li>
+<li><p><strong>Inversion IQ :</strong> Utilisation de <code class="docutils literal notranslate"><span class="pre">LoRa.enableInvertIQ()</span></code> pour simuler une passerelle (Gateway).</p></li>
+<li><p><strong>Payload de drain :</strong> Envoi d’une trame longue pour maximiser le temps de traitement actif.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="mise-en-place-du-noeud-legitime-lopy4">
+<h3>2. Mise en place du nœud légitime (LoPy4)<a class="headerlink" href="#mise-en-place-du-noeud-legitime-lopy4" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>Flashez le fichier <code class="docutils literal notranslate"><span class="pre">main.py</span></code> situé dans <code class="docutils literal notranslate"><span class="pre">/attaques/energy_depletion/lopy_energy_depletion/</span></code> via Pymakr.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Ce code mesure précisément le temps d’activité radio à l’aide de <code class="docutils literal notranslate"><span class="pre">time.ticks_diff()</span></code> après chaque envoi de donnée (humidité).</p>
+</div>
+</section>
+<section id="visualisation-de-l-impact">
+<h3>3. Visualisation de l’impact<a class="headerlink" href="#visualisation-de-l-impact" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>Pour confirmer l’attaque, observez les deux terminaux simultanément :</p>
+<dl class="simple">
+<dt>Terminal Arduino (Minicom)</dt><dd><p>Affiche <code class="docutils literal notranslate"><span class="pre">&gt;&gt;&gt;</span> <span class="pre">Uplink</span> <span class="pre">victime</span> <span class="pre">détecté</span> <span class="pre">!</span></code> suivi de <code class="docutils literal notranslate"><span class="pre">Attaque</span> <span class="pre">envoyée</span> <span class="pre">!</span></code>.</p>
+</dd>
+<dt>Terminal Pymakr (LoPy4)</dt><dd><ul class="simple">
+<li><p><strong>État Normal :</strong> Le nœud referme sa fenêtre quasi-instantanément s’il ne reçoit rien.</p></li>
+<li><p><strong>Sous Attaque :</strong> Le terminal affiche : <code class="docutils literal notranslate"><span class="pre">!!!</span> <span class="pre">ALERTE</span> <span class="pre">ENERGY</span> <span class="pre">DRAIN</span> <span class="pre">!!!</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p>On observe que la radio reste active <strong>plus de 3000 ms</strong>, confirmant que l’attaquant a réussi à forcer le maintien sous tension du capteur.</p>
+</div>
+</section>
+<section id="conclusion-du-test">
+<h3>Conclusion du test<a class="headerlink" href="#conclusion-du-test" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>Le succès de l’attaque est validé par l’apparition du message :
+<code class="docutils literal notranslate"><span class="pre">Surconsommation</span> <span class="pre">:</span> <span class="pre">La</span> <span class="pre">radio</span> <span class="pre">est</span> <span class="pre">restée</span> <span class="pre">active</span> <span class="pre">XXXX</span> <span class="pre">ms</span></code>.</p>
+<p>Cela prouve que même sans posséder les clés de chiffrement pour injecter des données valides, un attaquant peut compromettre la longévité du réseau en forçant le traitement radio.</p>
+</section>
+</section>
+<section id="attaque-ack-spoofing">
+<h2>Attaque ACK Spoofing<a class="headerlink" href="#attaque-ack-spoofing" title="Lien permanent vers cette rubrique">¶</a></h2>
+<section id="id20">
+<h3>Contexte<a class="headerlink" href="#id20" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>L’attaque par ACK Spoofing consiste à intercepter un message de type Confirmed Data Up et à envoyer un faux accusé de réception (ACK) au capteur avant que la véritable passerelle n’ait pu répondre. L’objectif est de tromper le nœud final en lui faisant croire que sa donnée a été reçue avec succès, le poussant à vider sa file d’attente et à ne pas tenter de retransmission, même si la donnée originale a été perdue ou brouillée.</p>
+</section>
+<section id="id21">
+<h3>Méthodologie de l’attaque<a class="headerlink" href="#id21" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>L’attaquant exploite le comportement déterministe des fenêtres de réception LoRaWAN :</p>
+<ol class="arabic simple">
+<li><p>Détection du mode Confirmed : L’attaquant écoute le trafic montant (Uplink). Il identifie les messages dont l’en-tête (MHDR) est positionné sur 0x80 (Confirmed Data Up).</p></li>
+<li><p>Injection dans la fenêtre RX1 : Le protocole LoRaWAN ouvre une fenêtre de réception exactement 1 seconde après l’émission. L’attaquant injecte une trame Unconfirmed Data Down avec le bit ACK activé durant cet intervalle précis.</p></li>
+</ol>
+</section>
+<section id="id22">
+<h3>Déploiement<a class="headerlink" href="#id22" title="Lien permanent vers cette rubrique">¶</a></h3>
+<section id="id23">
+<h4>Matériel utilisé :<a class="headerlink" href="#id23" title="Lien permanent vers cette rubrique">¶</a></h4>
+<ul class="simple">
+<li><p><strong>LoPy4</strong> (nœud légitime demandant des confirmations)</p></li>
+<li><p><strong>Arduino Dragino</strong> (nœud injecteur d’ACK)</p></li>
+<li><p><strong>Passerelle LoRaWAN</strong> configurée sur la fréquence 868,3 MHz</p></li>
+</ul>
+</section>
+<section id="id24">
+<h4>Étapes :<a class="headerlink" href="#id24" title="Lien permanent vers cette rubrique">¶</a></h4>
+</section>
+</section>
+<section id="id25">
+<h3>1. Mise en place du nœud attaquant (Arduino)<a class="headerlink" href="#id25" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>Flashez le code <code class="docutils literal notranslate"><span class="pre">ACK_spoofing.ino</span></code> situé dans <code class="docutils literal notranslate"><span class="pre">/attaques/ACK_spoofing/</span></code> sur l’Arduino Dragino :</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>arduino<span class="w"> </span>--upload<span class="w"> </span>attaques/ACK_spoofing/ACK_spoofing.ino<span class="w"> </span>--port<span class="w"> </span>/dev/ttyACM1
+</pre></div>
+</div>
+<dl class="simple">
+<dt><strong>Justification de la configuration :</strong></dt><dd><ul class="simple">
+<li><p><strong>Fréquence et Timing :</strong> Le code bascule de la fréquence d’écoute (868.3 MHz) à la fréquence de réception (868.1 MHz selon le plan de fréquence) avec un délai de <code class="docutils literal notranslate"><span class="pre">990ms</span></code> pour frapper exactement au début de la fenêtre RX1.</p></li>
+<li><p><strong>Inversion IQ :</strong> Comme pour l’épuisement de batterie, l’utilisation de <code class="docutils literal notranslate"><span class="pre">LoRa.enableInvertIQ()</span></code> est indispensable pour que le signal soit accepté par la radio de la victime comme provenant d’une passerelle.</p></li>
+<li><p><strong>Trame capturée :</strong> Le code utilise une trame pré-calculée incluant un MIC (Message Integrity Code) valide pour le <code class="docutils literal notranslate"><span class="pre">DevAddr</span></code> ciblé.</p></li>
+</ul>
+</dd>
+</dl>
+</section>
+<section id="id26">
+<h3>2. Mise en place du nœud légitime (LoPy4)<a class="headerlink" href="#id26" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>Flashez le fichier <code class="docutils literal notranslate"><span class="pre">main.py</span></code> sur le LoPy4. Ce code est configuré pour exiger une confirmation de la passerelle :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Activation du mode CONFIRMED</span>
+<span class="n">s</span><span class="o">.</span><span class="n">setsockopt</span><span class="p">(</span><span class="n">socket</span><span class="o">.</span><span class="n">SOL_LORA</span><span class="p">,</span> <span class="n">socket</span><span class="o">.</span><span class="n">SO_CONFIRMED</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Dans ce scénario, le LoPy4 envoie le message « ALERTE » et attend un signal de retour. S’il reçoit le faux ACK de l’Arduino, il affichera « ACK REÇU » et passera à la suite, ignorant que le serveur n’a peut-être jamais reçu l’alerte.</p>
+</div>
+</section>
+<section id="id27">
+<h3>3. Visualisation de l’impact<a class="headerlink" href="#id27" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>Pour confirmer l’attaque, observez les deux terminaux simultanément :</p>
+<dl class="simple">
+<dt>Terminal Arduino (Minicom)</dt><dd><p>Affiche <code class="docutils literal notranslate"><span class="pre">[!]</span> <span class="pre">Uplink</span> <span class="pre">Confirmed</span> <span class="pre">détecté</span> <span class="pre">!</span></code> suivi de <code class="docutils literal notranslate"><span class="pre">[+]</span> <span class="pre">Faux</span> <span class="pre">ACK</span> <span class="pre">(FCnt</span> <span class="pre">14)</span> <span class="pre">injecté</span> <span class="pre">dans</span> <span class="pre">RX1</span> <span class="pre">!</span></code>.</p>
+</dd>
+<dt>Terminal Pymakr (LoPy4)</dt><dd><ul class="simple">
+<li><p><strong>État Normal :</strong> En l’absence de passerelle, le nœud devrait afficher <code class="docutils literal notranslate"><span class="pre">MAC_ERR</span></code>.</p></li>
+<li><p><strong>Sous Attaque :</strong> Le terminal affiche instantanément <code class="docutils literal notranslate"><span class="pre">ACK</span> <span class="pre">REÇU</span></code> juste après l’envoi, prouvant que le nœud a été dupé par l’injecteur Arduino.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Difficultés liées au Frequency Hopping :</strong>
+Lors de nos tests, l’injection précise du faux ACK dans la fenêtre <strong>RX1</strong> n’a pas pu être finalisée avec succès. Cette difficulté est due au mécanisme de <strong>Frequency Hopping</strong> (saut de fréquence) du réseau LoRaWAN. Bien que l’attaquant soit « agile » et tente d’envoyer l’ACK sur différentes fréquences, il est extrêmement difficile de coïncider avec la fréquence exacte choisie par le réseau pour RX1 à chaque cycle.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Avertissement</p>
+<p><strong>Effet secondaire : Épuisement de batterie (Energy Depletion) :</strong>
+Même si l’usurpation d’ACK a échoué, l’attaque a provoqué un déni de service énergétique. Comme le LoPy4 ne recevait jamais l’ACK attendu, il a continué à renvoyer ses messages <code class="docutils literal notranslate"><span class="pre">Confirmed</span> <span class="pre">Data</span> <span class="pre">Up</span></code> de manière répétée. Cette activité radio incessante a maintenu le processeur et la puce LoRa en éveil, provoquant une surconsommation similaire à une attaque d’épuisement de batterie.</p>
+</div>
+</section>
+<section id="id28">
+<h3>Conclusion du test<a class="headerlink" href="#id28" title="Lien permanent vers cette rubrique">¶</a></h3>
+<p>L’attaque est réussie lorsque le nœud légitime valide sa transmission (<code class="docutils literal notranslate"><span class="pre">ACK</span> <span class="pre">REÇU</span></code>) grâce au message injecté par l’Arduino. Cela démontre une faille d’intégrité : l’application cliente croit que ses données critiques (comme une « ALERTE ») sont en sécurité sur le serveur, alors qu’elles ont été interceptées et validées par un tiers malveillant.</p>
+</section>
 </section>
 </section>
 
@@ -419,12 +675,15 @@ Lancer<span class="w"> </span>./run.sh<span class="w"> </span>et<span class="w">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html#infrastructure-lorawan">Infrastructure LoRaWAN</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html#noeud-legitime">Noeud légitime</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html#configuration-chirpstack">Configuration ChirpStack</a></li>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html#noeud-attaquant">Noeud attaquant</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Attaques</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#attaque-sur-cles-basiques">Attaque sur clés basiques</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sniffing">Sniffing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#attaque-par-rejeu">Attaque par rejeu</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#attaque-de-brouillage">Attaque de brouillage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attaque-d-epuisement-de-batterie">Attaque d’Épuisement de batterie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#attaque-ack-spoofing">Attaque ACK Spoofing</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="scenario.html">Scénario</a></li>
@@ -439,7 +698,7 @@ Lancer<span class="w"> </span>./run.sh<span class="w"> </span>et<span class="w">
   </ul></li>
 </ul>
 </div>
-<search id="searchbox" style="display: none" role="search">
+<div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Recherche rapide</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -447,7 +706,7 @@ Lancer<span class="w"> </span>./run.sh<span class="w"> </span>et<span class="w">
       <input type="submit" value="Go" />
     </form>
     </div>
-</search>
+</div>
 <script>document.getElementById('searchbox').style.display = "block"</script>
 
 
@@ -462,11 +721,11 @@ Lancer<span class="w"> </span>./run.sh<span class="w"> </span>et<span class="w">
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &#169;2025, Atbane, Friboulet.
+      &copy;2025, Atbane, Friboulet.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
       <a href="_sources/attaques.rst.txt"

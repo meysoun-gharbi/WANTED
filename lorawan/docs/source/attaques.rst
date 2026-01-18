@@ -474,3 +474,209 @@ Limites
 - Consommation énergétique élevée : L’attaque nécessite une émission continue, ce qui peut vider rapidement la batterie du dispositif malveillant.
 
 - Détection possible : Une activité radio anormale peut être repérée avec des outils de monitoring RF.
+
+Attaque d'Épuisement de batterie
+********************************
+
+Contexte
+--------
+L'attaque par épuisement de batterie (ou "Battery Exhaustion") est une variante du déni de service (DoS) qui ne cible pas la disponibilité du réseau, mais la durée de vie physique des capteurs. Dans un contexte agricole ou industriel, où les capteurs sont souvent autonomes et difficiles d'accès, cette attaque peut paralyser un déploiement sur le long terme.
+
+
+Méthodologie de l'attaque
+-------------------------
+
+L'attaquant exploite le mécanisme d'écoute des fenêtres de réception (RX1 et RX2) du nœud final :
+
+
+1. Ciblage de la fenêtre RX2 : L'attaquant attend qu'un capteur émette une donnée (Uplink). Il calcule ensuite le moment exact où le capteur ouvrira sa deuxième fenêtre de réception (RX2), soit généralement 2 secondes après l'émission.
+
+2. Saturation du récepteur : L'attaquant envoie un faux message long et complexe avec un préambule valide durant cette fenêtre. Le capteur est alors forcé de rester en mode réception active (consommation élevée) pour décoder la trame, au lieu de retourner immédiatement en mode "Deep Sleep".
+
+
+Déploiement
+-----------
+
+Matériel utilisé :
+~~~~~~~~~~~~~~~~~~
+
+
+- **LoPy4** (nœud légitime)
+
+- **Arduino Dragino** (nœud de Déni de batterie)
+
+- **Passerelle LoRaWAN** configurée sur la fréquence 868,3 MHz
+
+
+
+Étapes :
+~~~~~~~~
+
+
+1. Mise en place du nœud attaquant (Arduino)
+--------------------------------------------
+
+Flashez le code sur l'Arduino Dragino :
+
+.. code-block:: bash
+
+   # Vérifiez le port avec 'ls /dev/tty*' au préalable
+   arduino --upload attaques/energy_depletion/energy_depletion.ino --port /dev/ttyACM1
+
+**Justification de la configuration :**
+   Le choix de cibler **RX2** est stratégique car ses paramètres sont publics et normalisés :
+
+   * **Fréquence fixe :** En Europe, elle est fixée par défaut à **869.525 MHz**.
+   * **Paramètres prévisibles :** Le Spreading Factor (SF) et la bande passante sont constants. Contrairement à RX1, RX2 permet à un attaquant de se caler sur une cible sans analyse préalable.
+
+**Logique du code :**
+   * **Détection :** Écoute sur la fréquence Uplink (868.3 MHz).
+   * **Synchronisation :** Délai de ``1950ms`` pour s'aligner sur l'ouverture de la fenêtre RX2.
+   * **Inversion IQ :** Utilisation de ``LoRa.enableInvertIQ()`` pour simuler une passerelle (Gateway).
+   * **Payload de drain :** Envoi d'une trame longue pour maximiser le temps de traitement actif.
+
+2. Mise en place du nœud légitime (LoPy4)
+-----------------------------------------
+
+Flashez le fichier ``main.py`` situé dans ``/attaques/energy_depletion/lopy_energy_depletion/`` via Pymakr.
+
+.. note::
+   Ce code mesure précisément le temps d'activité radio à l'aide de ``time.ticks_diff()`` après chaque envoi de donnée (humidité).
+
+3. Visualisation de l'impact
+----------------------------
+
+Pour confirmer l'attaque, observez les deux terminaux simultanément :
+
+Terminal Arduino (Minicom)
+   Affiche ``>>> Uplink victime détecté !`` suivi de ``Attaque envoyée !``.
+
+Terminal Pymakr (LoPy4)
+   * **État Normal :** Le nœud referme sa fenêtre quasi-instantanément s'il ne reçoit rien.
+   * **Sous Attaque :** Le terminal affiche : ``!!! ALERTE ENERGY DRAIN !!!``.
+
+.. warning::
+   On observe que la radio reste active **plus de 3000 ms**, confirmant que l'attaquant a réussi à forcer le maintien sous tension du capteur.
+
+
+
+Conclusion du test
+------------------
+
+Le succès de l'attaque est validé par l'apparition du message : 
+``Surconsommation : La radio est restée active XXXX ms``. 
+
+Cela prouve que même sans posséder les clés de chiffrement pour injecter des données valides, un attaquant peut compromettre la longévité du réseau en forçant le traitement radio.
+
+
+Attaque ACK Spoofing
+********************************
+
+Contexte
+--------
+L'attaque par ACK Spoofing consiste à intercepter un message de type Confirmed Data Up et à envoyer un faux accusé de réception (ACK) au capteur avant que la véritable passerelle n'ait pu répondre. L'objectif est de tromper le nœud final en lui faisant croire que sa donnée a été reçue avec succès, le poussant à vider sa file d'attente et à ne pas tenter de retransmission, même si la donnée originale a été perdue ou brouillée.
+
+Méthodologie de l'attaque
+-------------------------
+
+L'attaquant exploite le comportement déterministe des fenêtres de réception LoRaWAN :
+
+
+
+1. Détection du mode Confirmed : L'attaquant écoute le trafic montant (Uplink). Il identifie les messages dont l'en-tête (MHDR) est positionné sur 0x80 (Confirmed Data Up).
+
+2. Injection dans la fenêtre RX1 : Le protocole LoRaWAN ouvre une fenêtre de réception exactement 1 seconde après l'émission. L'attaquant injecte une trame Unconfirmed Data Down avec le bit ACK activé durant cet intervalle précis.
+
+Déploiement
+-----------
+
+Matériel utilisé :
+~~~~~~~~~~~~~~~~~~
+
+
+- **LoPy4** (nœud légitime demandant des confirmations)
+
+- **Arduino Dragino** (nœud injecteur d'ACK)
+
+- **Passerelle LoRaWAN** configurée sur la fréquence 868,3 MHz
+
+
+
+Étapes :
+~~~~~~~~
+
+
+1. Mise en place du nœud attaquant (Arduino)
+--------------------------------------------
+
+Flashez le code ``ACK_spoofing.ino`` situé dans ``/attaques/ACK_spoofing/`` sur l'Arduino Dragino :
+
+.. code-block:: bash
+
+   arduino --upload attaques/ACK_spoofing/ACK_spoofing.ino --port /dev/ttyACM1
+
+**Justification de la configuration :**
+   * **Fréquence et Timing :** Le code bascule de la fréquence d'écoute (868.3 MHz) à la fréquence de réception (868.1 MHz selon le plan de fréquence) avec un délai de ``990ms`` pour frapper exactement au début de la fenêtre RX1.
+   * **Inversion IQ :** Comme pour l'épuisement de batterie, l'utilisation de ``LoRa.enableInvertIQ()`` est indispensable pour que le signal soit accepté par la radio de la victime comme provenant d'une passerelle.
+   * **Trame capturée :** Le code utilise une trame pré-calculée incluant un MIC (Message Integrity Code) valide pour le ``DevAddr`` ciblé.
+
+2. Mise en place du nœud légitime (LoPy4)
+-----------------------------------------
+
+Flashez le fichier ``main.py`` sur le LoPy4. Ce code est configuré pour exiger une confirmation de la passerelle :
+
+.. code-block:: python
+
+   # Activation du mode CONFIRMED
+   s.setsockopt(socket.SOL_LORA, socket.SO_CONFIRMED, True)
+
+.. note::
+   Dans ce scénario, le LoPy4 envoie le message "ALERTE" et attend un signal de retour. S'il reçoit le faux ACK de l'Arduino, il affichera "ACK REÇU" et passera à la suite, ignorant que le serveur n'a peut-être jamais reçu l'alerte.
+
+3. Visualisation de l'impact
+----------------------------
+
+Pour confirmer l'attaque, observez les deux terminaux simultanément :
+
+Terminal Arduino (Minicom)
+   Affiche ``[!] Uplink Confirmed détecté !`` suivi de ``[+] Faux ACK (FCnt 14) injecté dans RX1 !``.
+
+Terminal Pymakr (LoPy4)
+   * **État Normal :** En l'absence de passerelle, le nœud devrait afficher ``MAC_ERR``.
+   * **Sous Attaque :** Le terminal affiche instantanément ``ACK REÇU`` juste après l'envoi, prouvant que le nœud a été dupé par l'injecteur Arduino.
+
+.. note::
+   **Difficultés liées au Frequency Hopping :**
+   Lors de nos tests, l'injection précise du faux ACK dans la fenêtre **RX1** n'a pas pu être finalisée avec succès. Cette difficulté est due au mécanisme de **Frequency Hopping** (saut de fréquence) du réseau LoRaWAN. Bien que l'attaquant soit "agile" et tente d'envoyer l'ACK sur différentes fréquences, il est extrêmement difficile de coïncider avec la fréquence exacte choisie par le réseau pour RX1 à chaque cycle.
+
+.. warning::
+   **Effet secondaire : Épuisement de batterie (Energy Depletion) :**
+   Même si l'usurpation d'ACK a échoué, l'attaque a provoqué un déni de service énergétique. Comme le LoPy4 ne recevait jamais l'ACK attendu, il a continué à renvoyer ses messages ``Confirmed Data Up`` de manière répétée. Cette activité radio incessante a maintenu le processeur et la puce LoRa en éveil, provoquant une surconsommation similaire à une attaque d'épuisement de batterie.
+
+Conclusion du test
+------------------
+
+L'attaque est réussie lorsque le nœud légitime valide sa transmission (``ACK REÇU``) grâce au message injecté par l'Arduino. Cela démontre une faille d'intégrité : l'application cliente croit que ses données critiques (comme une "ALERTE") sont en sécurité sur le serveur, alors qu'elles ont été interceptées et validées par un tiers malveillant.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

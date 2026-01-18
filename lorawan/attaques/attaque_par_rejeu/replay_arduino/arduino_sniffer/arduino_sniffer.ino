@@ -13,6 +13,7 @@ void setup() {
   }
 
   // Configurer le spreading factor et la bande passante
+  LoRa.setSyncWord(0x34);
   LoRa.setSpreadingFactor(7);  // SF7
   LoRa.setSignalBandwidth(125E3);  // 125 kHz
   LoRa.setCodingRate4(5);  // Coding Rate 4/5

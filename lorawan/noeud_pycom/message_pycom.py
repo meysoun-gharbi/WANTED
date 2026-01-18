@@ -13,9 +13,9 @@ lora = LoRa(mode=LoRa.LORAWAN, region=LoRa.EU868)
 
 # create an OTAA authentication parameters, change them to the provided credentials
 app_eui = ubinascii.unhexlify('0000000000000000') #app key non trouvée
-app_key = ubinascii.unhexlify('ad6c170e0068fadd9767b90dec1651dc')
+app_key = ubinascii.unhexlify('bae64ce2ce34fd94c24f8ec55c233ecb')
 #uncomment to use LoRaWAN application provided dev_eui
-dev_eui = ubinascii.unhexlify('70b3d54999712a57')
+dev_eui = ubinascii.unhexlify('70B3D54995CA5785')
 
 # Uncomment for US915 / AU915 & Pygate
 # for i in range(0,8):

@@ -366,3 +366,226 @@ Ce paquet sera visible dans les logs du sniffer, mais rejeté par ChirpStack san
 
 Attaque de brouillage
 *********************
+
+Contexte
+--------
+
+Le brouillage radio (jamming) est une forme d’attaque par déni de service (DoS) qui vise à perturber les communications sans intercepter les données. Elle consiste à inonder un canal radio avec des signaux parasites pour empêcher les nœuds LoRaWAN de transmettre ou de recevoir correctement.
+
+Il existe plusieurs types de brouillage :
+
+- **Brouillage continu (constant jamming)** : envoi constant de signaux pour occuper le canal.
+
+- **Brouillage réactif (reactive jamming)** : envoi d’un signal dès qu’un paquet est détecté.
+
+- **Brouillage aléatoire (random jamming)** : émission de signaux à intervalles irréguliers.
+
+- **Brouillage ciblé (trigger ou selective jamming)** : attaque déclenchée à la détection d’un certain type de trame ou contenu.
+
+Dans cette documentation, nous allons nous concentrer sur le brouillage de type “deny”, c’est-à-dire une attaque simple et continue qui vise à saturer le canal radio LoRaWAN pour empêcher toute autre communication légitime.
+
+Méthodologie de l'attaque
+-------------------------
+
+L'attaque consiste à utiliser un nœud LoRa pour transmettre en boucle un message répétitif, sans respecter les intervalles habituels entre deux transmissions. Le message contient simplement une chaîne de caractères (par exemple "JammingJamming...") répétée, qui n’a aucune signification fonctionnelle, mais occupe le temps d’antenne radio.
+
+Le nœud utilise la même configuration que les dispositifs du réseau cible :
+
+- **Fréquence** : 868,3 MHz
+
+- **Spreading Factor** : SF7
+
+- **Bande passante** : 125 kHz
+
+- **Coding rate** : 4/5
+
+Grâce à cette configuration, l’attaque peut interférer efficacement avec la passerelle et bloquer les communications entrantes des vrais capteurs.
+
+Déploiement
+-----------
+
+Matériel utilisé :
+~~~~~~~~~~~~~~~~~~
+
+
+- **LoPy4** (nœud légitime)
+
+- **Arduino Dragino** (nœud de brouillage)
+
+- **Passerelle LoRaWAN** configurée sur la fréquence 868,3 MHz
+
+Étapes :
+~~~~~~~~
+
+
+1.  Mise en place du nœud légitime (LoPy4) :
+
+- Ouvrir Pymakr ou VSCode avec le plugin Pycom.
+
+- Charger le script de transmission qui se trouve dans : ``reproduction-attaques-lorawan/noeud_pycom/message_pycom.py``   vers la passerelle.
+
+- Lancer le code et observer la réception dans l'interface ChirpStack
+
+Une fois le fonctionnement normal confirmé (messages visibles sur ChirpStack), on initialise l’attaque.
+
+2. Mise en place du nœud brouilleur (Arduino Dragino) :
+- Ouvrir le fichier suivant dans l’IDE Arduino : ``reproduction-attaques-lorawan/attaques/brouillage/jamming_deny/jamming_deny.ino``
+
+- S’assurer que les paramètres LoRa sont identiques à ceux du LoPy4 :
+
+ .. code-block:: bash
+
+      LoRa.begin(868.3E6);
+      LoRa.setSpreadingFactor(7);
+      LoRa.setSignalBandwidth(125E3);
+
+- Connecter l’Arduino et téléverser le code
+
+Le code de brouillage est flashé sur l’Arduino Dragino. Ce dernier transmet en boucle un message répétitif (par exemple "JammingJamming...") sur la même fréquence et avec les mêmes paramètres LoRa (SF7, BW 125 kHz).
+
+3.  Observation des effets de l’attaque :
+
+Dès l’activation du brouillage, on observe une interruption de la réception des messages du LoPy4 par la passerelle.
+Cette coupure confirme que le canal est saturé par le nœud attaquant et que l’attaque de type deny est efficace.
+
+L’envoi peut être vérifié via le moniteur série de l’IDE Arduino, où un message de confirmation s’affiche après chaque transmission.
+
+ .. code-block:: bash
+
+      JAM_SUCCES;
+   
+   
+
+Contre-mesures et recommandations
+---------------------------------
+
+- Activer la détection d’interférences au niveau de la passerelle, si disponible.
+
+- Surveiller le taux de perte de paquets pour détecter une activité anormale.
+
+- Utiliser le frequency hopping (saut de fréquence) pour réduire l’impact du brouillage.
+
+- Mettre en place des mécanismes de priorité ou de répétition adaptative dans les capteurs.
+
+Limites
+-------
+- Portée physique réduite : L’attaquant doit être proche de la passerelle ou des nœuds pour être efficace.
+
+- Consommation énergétique élevée : L’attaque nécessite une émission continue, ce qui peut vider rapidement la batterie du dispositif malveillant.
+
+- Détection possible : Une activité radio anormale peut être repérée avec des outils de monitoring RF.
+
+---
+
+Attaque d'Épuisement de batterie
+********************************
+
+Contexte
+--------
+L'attaque par épuisement de batterie (ou "Battery Exhaustion") est une variante du déni de service (DoS) qui ne cible pas la disponibilité du réseau, mais la durée de vie physique des capteurs. Dans un contexte agricole ou industriel, où les capteurs sont souvent autonomes et difficiles d'accès, cette attaque peut paralyser un déploiement sur le long terme.
+
+
+Méthodologie de l'attaque
+-------------------------
+
+L'attaquant exploite le mécanisme d'écoute des fenêtres de réception (RX1 et RX2) du nœud final :
+
+
+1. Ciblage de la fenêtre RX2 : L'attaquant attend qu'un capteur émette une donnée (Uplink). Il calcule ensuite le moment exact où le capteur ouvrira sa deuxième fenêtre de réception (RX2), soit généralement 2 secondes après l'émission.
+
+2. Saturation du récepteur : L'attaquant envoie un faux message long et complexe avec un préambule valide durant cette fenêtre. Le capteur est alors forcé de rester en mode réception active (consommation élevée) pour décoder la trame, au lieu de retourner immédiatement en mode "Deep Sleep".
+
+
+Déploiement
+-----------
+
+Matériel utilisé :
+~~~~~~~~~~~~~~~~~~
+
+
+- **LoPy4** (nœud légitime)
+
+- **Arduino Dragino** (nœud de Déni de batterie)
+
+- **Passerelle LoRaWAN** configurée sur la fréquence 868,3 MHz
+
+
+
+Étapes :
+~~~~~~~~
+
+
+1. Mise en place du noeud attaquant (Arduino)
+
+- Flasher le code sur l'Arduino :
+
+   .. code-block:: bash
+
+      arduino --upload attaques/energy_depletion/energy_depletion.ino --port /dev/ttyACM1
+      
+(vérifier le port avec ls /dev/tty* dans la commande shell)
+
+ . Justification de la configuration : Le choix de cibler RX2 est stratégique car ses paramètres sont accessibles à tous dans les spécifications LoRaWAN :
+
+	- Fréquence fixe : En Europe, elle est fixée par défaut à 869.525 MHz.
+
+	- Paramètres prévisibles : Le Spreading Factor (SF) et la bande passante sont constants. Contrairement à RX1 (qui dépend de l'envoi du nœud), RX2 permet à un attaquant de se caler sur une fréquence connue sans analyse complexe.
+
+  . Logique du code :
+
+	- Détection : Le script écoute sur la fréquence Uplink (868.3 MHz) pour repérer le début d'une communication.
+
+	- Synchronisation : Il utilise un délai (delay(1950)) pour s'aligner sur l'ouverture de la fenêtre RX2.
+
+	- Inversion IQ : Le code utilise LoRa.enableInvertIQ(). C'est une étape cruciale pour simuler le comportement d'une passerelle (Gateway), sans quoi le nœud ignorerait le message.
+
+	- Payload de drain : Il envoie une trame factice avec une charge utile longue pour maximiser le temps de traitement du processeur cible.
+
+
+
+2. Mise en place du noeud légitime (lopy4)
+
+- Flasher le code "main.py" qui se trouve /attaques/energy_depletion/lopy_energy_depletion/main.py dans le lopy via Pymakr 
+
+  . Ce code envoie une donnée (humidité) puis ouvre une fenêtre d'écoute. Il mesure précisément le temps pendant lequel la radio reste active grâce à time.ticks_diff().
+
+3. Visualisation de l'impact: Pour confirmer l'attaque, il faut observer deux terminaux simultanément :
+
+	- Terminal Arduino (Minicom) : Affiche >>> Uplink victime détecté ! suivi de Attaque envoyée ! lors de la fenêtre RX2.
+
+	- Terminal Pymakr (LoPy4) : * En temps normal, le nœud referme sa fenêtre rapidement s'il ne reçoit rien.
+
+	. Sous attaque, le terminal affiche : !!! ALERTE ENERGY DRAIN !!!.
+
+	.On observe que la radio reste active plus de 3000 ms, confirmant que l'attaquant a réussi à "intercepter" l'attention du capteur et à forcer son maintien sous tension.
+
+Conclusion du test
+-------------------
+
+- Le succès de l'attaque est validé quand le message Surconsommation : La radio est restée active XXXX ms apparaît sur le LoPy4. Cela prouve que même sans décoder le contenu (faute de clés valides), le simple fait de forcer le traitement radio consomme une énergie qui n'était pas prévue dans le budget énergétique du capteur.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

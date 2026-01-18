@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 
-<html lang="fr" data-content_root="./">
+<html lang="fr">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Scénario &#8212; Documentation Reproduction d&#39;attaques sur LoRaWAN 1.0</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
-    <script src="_static/documentation_options.js?v=7a28dfa3"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
-    <script src="_static/translations.js?v=bf059b8c"></script>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=6625fa76" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=bd10cbeb"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/translations.js?v=d99ca74e"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Recherche" href="search.html" />
     <link rel="prev" title="Attaques" href="attaques.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
-
   
-  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
   
@@ -33,9 +32,9 @@
           <div class="body" role="main">
             
   <section id="scenario">
-<h1>Scénario<a class="headerlink" href="#scenario" title="Lien vers cette rubrique">¶</a></h1>
+<h1>Scénario<a class="headerlink" href="#scenario" title="Lien permanent vers cette rubrique">¶</a></h1>
 <section id="objectif">
-<h2>Objectif<a class="headerlink" href="#objectif" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Objectif<a class="headerlink" href="#objectif" title="Lien permanent vers cette rubrique">¶</a></h2>
 <p>Réaliser une attaque par <strong>usurpation de passerelle</strong> via :</p>
 <ol class="arabic simple">
 <li><p>Un jamming sélectif des paquets Join Accept légitimes</p></li>
@@ -43,14 +42,14 @@
 </ol>
 </section>
 <section id="besoin-manquant">
-<h2>Besoin manquant<a class="headerlink" href="#besoin-manquant" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Besoin manquant<a class="headerlink" href="#besoin-manquant" title="Lien permanent vers cette rubrique">¶</a></h2>
 <p>Utiliser le jamming déjà mis en place et l’améliorer pour en faire un outil de jamming sélectif permettant de brouiller un type de paquet en particulier.</p>
 </section>
 <section id="deroulement">
-<h2>Déroulement<a class="headerlink" href="#deroulement" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Déroulement<a class="headerlink" href="#deroulement" title="Lien permanent vers cette rubrique">¶</a></h2>
 <a class="with-border reference internal image-reference" href="_images/scenario.png"><img alt="Diagramme d'attaque par usurpation LoRaWAN" class="with-border align-center" src="_images/scenario.png" style="width: 800px;" /></a>
 <section id="phase-initiale">
-<h3>1. Phase initiale<a class="headerlink" href="#phase-initiale" title="Lien vers cette rubrique">¶</a></h3>
+<h3>1. Phase initiale<a class="headerlink" href="#phase-initiale" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ul class="simple">
 <li><p>Le device envoie un <strong>Join Request</strong> normal contenant :
 - DevEUI (identifiant du device)
@@ -59,7 +58,7 @@
 </ul>
 </section>
 <section id="attaque">
-<h3>2. Attaque<a class="headerlink" href="#attaque" title="Lien vers cette rubrique">¶</a></h3>
+<h3>2. Attaque<a class="headerlink" href="#attaque" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ul class="simple">
 <li><p><strong>Jamming ciblé</strong> : Brouillage uniquement des paquets Join Accept légitimes</p></li>
 <li><p><strong>Crafting malveillant</strong> : Envoi d’un faux Join Accept crafté contenant :</p>
@@ -72,13 +71,13 @@
 </section>
 </section>
 <section id="mecanisme-cles">
-<h2>Mécanisme Clés<a class="headerlink" href="#mecanisme-cles" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Mécanisme Clés<a class="headerlink" href="#mecanisme-cles" title="Lien permanent vers cette rubrique">¶</a></h2>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>Contrairement à une idée répandue, les clés de session <strong>ne sont pas transmises</strong> directement dans le Join Accept.</p>
 </div>
 <section id="processus-reel-de-derivation">
-<h3>Processus réel de dérivation<a class="headerlink" href="#processus-reel-de-derivation" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Processus réel de dérivation<a class="headerlink" href="#processus-reel-de-derivation" title="Lien permanent vers cette rubrique">¶</a></h3>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Côté device (calcul automatique) :</span>
 <span class="n">NwkSKey</span> <span class="o">=</span> <span class="n">aes128_encrypt</span><span class="p">(</span><span class="n">AppKey</span><span class="p">,</span> <span class="mh">0x01</span> <span class="o">|</span> <span class="n">JoinNonce</span> <span class="o">|</span> <span class="n">NetID</span> <span class="o">|</span> <span class="n">DevNonce</span><span class="p">)</span>
 <span class="n">AppSKey</span> <span class="o">=</span> <span class="n">aes128_encrypt</span><span class="p">(</span><span class="n">AppKey</span><span class="p">,</span> <span class="mh">0x02</span> <span class="o">|</span> <span class="n">JoinNonce</span> <span class="o">|</span> <span class="n">NetID</span> <span class="o">|</span> <span class="n">DevNonce</span><span class="p">)</span>
@@ -86,7 +85,7 @@
 </div>
 </section>
 <section id="implications-pour-l-attaque">
-<h3>Implications pour l’attaque<a class="headerlink" href="#implications-pour-l-attaque" title="Lien vers cette rubrique">¶</a></h3>
+<h3>Implications pour l’attaque<a class="headerlink" href="#implications-pour-l-attaque" title="Lien permanent vers cette rubrique">¶</a></h3>
 <ol class="arabic simple">
 <li><p><strong>Condition nécessaire</strong> :</p>
 <ul class="simple">
@@ -103,16 +102,25 @@
 </section>
 </section>
 <section id="protections-contre-mesures">
-<h2>Protections Contre-Mesures<a class="headerlink" href="#protections-contre-mesures" title="Lien vers cette rubrique">¶</a></h2>
+<h2>Protections Contre-Mesures<a class="headerlink" href="#protections-contre-mesures" title="Lien permanent vers cette rubrique">¶</a></h2>
 <ul class="simple">
-<li><p><strong>OTAA sécurisé</strong> :
-- Utilisation d’AppKey complexes
-- Rotation périodique des clés racines</p></li>
-<li><p><strong>Détection</strong> :
-- Surveillance des anomalies de JoinNonce
-- Analyse des variations de RSSI (détection jamming)</p></li>
-<li><p><strong>Chiffrement</strong> :
-- Activation systématique de AES-128 (même en public network)</p></li>
+<li><p><strong>OTAA sécurisé</strong> :</p>
+<ul>
+<li><p>Utilisation d’AppKey complexes</p></li>
+<li><p>Rotation périodique des clés racines</p></li>
+</ul>
+</li>
+<li><p><strong>Détection</strong> :</p>
+<ul>
+<li><p>Surveillance des anomalies de JoinNonce</p></li>
+<li><p>Analyse des variations de RSSI (détection jamming)</p></li>
+</ul>
+</li>
+<li><p><strong>Chiffrement</strong> :</p>
+<ul>
+<li><p>Activation systématique de AES-128 (même en public network)</p></li>
+</ul>
+</li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Avertissement</p>
@@ -167,7 +175,7 @@
   </ul></li>
 </ul>
 </div>
-<search id="searchbox" style="display: none" role="search">
+<div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Recherche rapide</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
@@ -175,7 +183,7 @@
       <input type="submit" value="Go" />
     </form>
     </div>
-</search>
+</div>
 <script>document.getElementById('searchbox').style.display = "block"</script>
 
 
@@ -190,11 +198,11 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &#169;2025, Atbane, Friboulet.
+      &copy;2025, Atbane, Friboulet.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.1.2</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
       <a href="_sources/scenario.rst.txt"
